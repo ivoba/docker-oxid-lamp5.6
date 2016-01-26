@@ -1,0 +1,22 @@
+oxidapachephp56:
+  build: apache-php56/
+  ports:
+    - 8083:80
+  links:
+    - mgmysql
+  volumes:
+    - ./code:/var/www
+
+oxidmysql:
+  image: mysql:latest
+  ports:
+   - 3306
+  environment:
+    MYSQL_DATABASE: oxid
+    MYSQL_USER: oxid
+    MYSQL_PASSWORD: oxid
+    MYSQL_ROOT_PASSWORD: rootPW
+  volumes:
+    - ./data/mysql:/var/lib/mysql
+    - ./mysql/my.cnf:/etc/mysql/conf.d/z_my.cnf
+
